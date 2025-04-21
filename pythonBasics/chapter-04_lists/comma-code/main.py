@@ -1,14 +1,27 @@
-def createString(list):
+import copy
+
+def createString(listArg):
+  listCopy = copy.copy(listArg)
   step = 1
-  for i in range(len(list) - 1):
-    list.insert(step, ',')
-    step += 2
-  string = list[0]
-  list = list[1:]
-  list[-2] = ' and '
-  for item in list:
-    string += item
-  print(string)
+  if not listArg:
+    return ''
+  
+  elif len(listCopy) == 1:
+    string = listCopy[0]
+    print(string)
+    return string
+  
+  else:
+    for i in range(len(listCopy) - 1):
+      listCopy.insert(step, ',')
+      step += 2
+
+    string = listCopy[0]
+    listCopy = listCopy[1:]
+    listCopy[-2] = ' and '
+    for item in listCopy:
+      string += item
+    return string
 
 example = ['apples', 'bananas', 'tofu', 'cats']
-createString(example)
+print(createString(example))
