@@ -18,4 +18,10 @@ def printTable(tableData):
     for row in range(len(tableData[i])):
       tableData[i][row] = (tableData[i][row].rjust(colWidths[i]))
 
+  # Print data in requested order
+  for rows in range(len(tableData[0])):
+    for cols in range(len(colWidths)):
+      print(tableData[cols][rows] + ' ', end='')
+    print()
+
 printTable(sample)
