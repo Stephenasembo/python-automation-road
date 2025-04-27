@@ -13,5 +13,9 @@ def printTable(tableData):
       if longestStr < len(tableData[i][value + 1]):
         longestStr = len(tableData[i][value + 1])
     colWidths[i] = longestStr
+  
+    # Justify each string
+    for row in range(len(tableData[i])):
+      tableData[i][row] = (tableData[i][row].rjust(colWidths[i]))
 
 printTable(sample)
