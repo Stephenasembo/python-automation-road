@@ -4,7 +4,7 @@ import re, sys
 
 def stripRegex(string, character = None):
   if character == None:
-    stringRegex = re.compile(r'\s')
+    stringRegex = re.compile(r'^(\s+)|(\s+)$')
   else:
     stringRegex = re.compile(character)
   # Substitute matches with blank strings acts as deletion of characters
