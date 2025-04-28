@@ -1,15 +1,18 @@
 #! /usr/bin/python3
 
-import re
+import re, sys
 
 def stripRegex(string, character = None):
-  # Check if second argument passed to function
-  # Create Regex to look for whitespace or characters
   if character == None:
     stringRegex = re.compile(r'\s')
   else:
     stringRegex = re.compile(character)
-  # Substitute matches with blank strings
+  # Substitute matches with blank strings acts as deletion of characters
   return stringRegex.sub('', string)
 
-print(stripRegex('  hello'))
+# Take user input from command line
+if len(sys.argv) > 3 or len(sys.argv) < 2:
+  print('Usage: python string character.')
+  sys.exit()
+else:
+  print(stripRegex(sys.argv[1], sys.argv[2]))
