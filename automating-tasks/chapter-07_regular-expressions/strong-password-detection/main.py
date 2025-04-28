@@ -1,10 +1,14 @@
 #! /usr/bin/python3
 
-import re
-
-userPassword = 'stephe7nNnnn'
+import re, sys
 
 def isPasswordStrong():
+  # User inputs password as a command line argument
+  if len(sys.argv) != 2:
+    print('Usage: python main.py password')
+    sys.exit()
+  userPassword = sys.argv[1]
+
   # Regexes check if password is strong
   passwordLenRegex = re.compile(r'(\w){8,}')
   digitRegex = re.compile(r'\d')
