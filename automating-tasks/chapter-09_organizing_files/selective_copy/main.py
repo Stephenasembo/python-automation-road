@@ -9,14 +9,14 @@ import os, re, shutil
 
 # extension = input('Which type of files do you want to copy ?\n')
 # Testing purposes
-extension = 'pdf'
+extension = '.pdf'
+extensionRegex = re.compile(extension)
 
 # TODO: Walk through the folder searching for the files.
 for folder, subFolders, files in os.walk('.'):
-  print(folder)
-  for subfolder in subFolders:
-    print(subfolder)
   for fileName in files:
-    print(fileName)
+    fileMatch = extensionRegex.search(fileName)
+    if fileMatch != None:
+      print('Found your file: ' + fileName)
 
 # TODO: Copy found files to a new folder.
