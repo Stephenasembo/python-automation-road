@@ -11,6 +11,7 @@ import os, re
 folder = os.path.join(os.getcwd(), 'sample')
 
 foundFiles = []
+fileNum = []
 
 prefix = 'spam'
 # Use a regex for finding files
@@ -30,8 +31,18 @@ for folderName, subFolders, files in os.walk(folder):
     # TODO: Store all found files in a list
     if fileMatch != None:
       foundFiles.append(fileName)
+      fileNum.append(fileMatch.group(1))
 
-print(foundFiles)
 # TODO: Look for gaps in file naming
+fileNum.sort()
+number = int(fileNum[0])
+
+for num in fileNum:
+  num = int(num)
+  if num == number:
+    number += 1
+  else:
+    print('Gap found: ' + str(number) + ' is missing.')
+    break
 
 # TODO: If gap found rename the file and files after it
