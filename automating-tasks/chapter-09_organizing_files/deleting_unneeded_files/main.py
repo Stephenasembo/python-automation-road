@@ -7,9 +7,15 @@
 
 import os
 
+''' File size conversions:
+1KB = 1024bytes
+1MB = 1024KB
+1GB = 1024MB
+'''
+
 # Test folder will be the home folder.
 folder = '/home/sain8op/'
-maxSize = 1000000
+maxSize = 100 * 1024 * 1024 #100MB
 largeFiles = []
 
 # TODO: Walk entire folder tree provided.
@@ -20,7 +26,8 @@ for folderName, subfolderNames, fileNames in os.walk(folder):
     if os.path.isfile(filePath):
       fileSize = os.path.getsize(filePath)
       if fileSize > maxSize:
-        largeFiles.append(filePath)
+        fileSize = round(fileSize / (1024 * 1024), 2) # store size as MB
+        largeFiles.append('File: ' + filePath + '. Size: ' + str(fileSize) + ' MB')
 
 # TODO: Store large file names in a list and print out the list.
 if len(largeFiles) != 0:
