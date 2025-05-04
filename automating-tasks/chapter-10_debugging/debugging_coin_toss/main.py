@@ -22,7 +22,6 @@ guessList = ['tails', 'heads']
 toss = guessList[random.randint(0, 1)] # 0 is tails, 1 is heads
 
 logging.debug('The coin toss is currently: ' + str(toss))
-logging.warning('The toss is a number between 1 and 0')
 
 if toss == guess:
   print('You got it!')
@@ -31,7 +30,7 @@ if toss == guess:
 else:
   print('Nope! Guess again!')
   logging.debug('An extra attempt awarded to player.')
-  guesss = input()
+  guess = input()
   logging.debug('The second guess from the player is: ' + guess)
 
   if toss == guess:
