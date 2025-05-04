@@ -34,15 +34,34 @@ for folderName, subFolders, files in os.walk(folder):
       fileNum.append(fileMatch.group(1))
 
 # TODO: Look for gaps in file naming
+foundFiles.sort()
 fileNum.sort()
+
 number = int(fileNum[0])
+nextFileIndex = 0
 
 for num in fileNum:
   num = int(num)
   if num == number:
     number += 1
+    nextFileIndex += 1
   else:
-    print('Gap found: ' + str(number) + ' is missing.')
+    gap = number
+    gapSize = int(fileNum[nextFileIndex]) - number
+    # print('Gap found: ' + str(gap) + ' is missing.')
+    # print('The gap size is: ' + str(gapSize))
+    # print('Rename the value at index: ' + str(nextFileIndex))
     break
 
 # TODO: If gap found rename the file and files after it
+rectifyFiles = foundFiles[nextFileIndex:]
+for i in range(len(rectifyFiles)):
+  numRegex = re.compile(r'\d+')
+  num = numRegex.search(rectifyFiles[i]).group()
+  numLen = len(num)
+  renamedNum = str((int(num)) - gapSize)
+  renamedNum = renamedNum.rjust(numLen, '0')
+  rectifyFiles[i] = numRegex.sub(renamedNum, rectifyFiles[i])
+
+foundFiles = foundFiles[:nextFileIndex] + rectifyFiles
+print(foundFiles)
