@@ -5,7 +5,7 @@
     the gap between the filenames.
 '''
 
-import os, re
+import os, re, shutil
 
 # Test folder
 folder = os.path.join(os.getcwd(), 'sample')
@@ -63,5 +63,20 @@ for i in range(len(rectifyFiles)):
   renamedNum = renamedNum.rjust(numLen, '0')
   rectifyFiles[i] = numRegex.sub(renamedNum, rectifyFiles[i])
 
-foundFiles = foundFiles[:nextFileIndex] + rectifyFiles
+rightOrder = foundFiles[:nextFileIndex] + rectifyFiles
 print(foundFiles)
+print(rightOrder)
+
+for i in range(len(foundFiles)):
+  foundFiles[i] = os.path.join(folder, foundFiles[i])
+  rightOrder[i] = os.path.join(folder, rightOrder[i])
+  print('Moving %s to %s' % (foundFiles[i], rightOrder[i]))
+  shutil.move(foundFiles[i], rightOrder[i])
+
+
+# for folderName, subfolders, files in os.walk(folder):
+#   for fileName in files:
+#     fileNamePath = os.path.join(folder, fileName)
+#     for foundFile in foundFiles:
+#       foundFilePath = os.path.join(folder, foundFile)
+#       print('Moving %s to %s' % (fileNamePath, foundFilePath))
