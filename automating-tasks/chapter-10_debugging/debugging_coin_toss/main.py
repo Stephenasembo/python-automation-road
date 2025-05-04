@@ -17,8 +17,12 @@ while guess not in ('heads', 'tails'):
   guess = input()
 
 logging.debug('The user\'s choice is: ' + guess)
-toss = random.randint(0, 1) # 0 is tails, 1 is heads
+
+guessList = ['tails', 'heads']
+toss = guessList[random.randint(0, 1)] # 0 is tails, 1 is heads
+
 logging.debug('The coin toss is currently: ' + str(toss))
+logging.warning('The toss is a number between 1 and 0')
 
 if toss == guess:
   print('You got it!')
