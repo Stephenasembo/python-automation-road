@@ -20,10 +20,15 @@ fileRegex = re.compile(r'''
   ''', re.VERBOSE)
 
 # TODO: Walk through folder
+for folderName, subFolders, files in os.walk(folder):
 
-# TODO: Find files with specified prefix
+  # TODO: Find files with specified prefix
+  for fileName in files:
+    fileMatch = fileRegex.search(fileName)
 
-# TODO: Store all found files in a list
+    # TODO: Store all found files in a list
+    if fileMatch != None:
+      foundFiles.append(fileName)
 
 # TODO: Look for gaps in file naming
 
