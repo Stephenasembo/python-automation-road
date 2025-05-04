@@ -7,6 +7,18 @@
 
 import os, re
 
+# Test folder
+folder = os.path.join(os.getcwd(), 'sample')
+
+foundFiles = []
+
+# Use a regex for finding files
+fileRegex = re.compile(r'''
+  ^(.*?)      # Initial word before number
+  (\d)+       # The file number
+  (.*)$       # The file extension
+  ''', re.VERBOSE)
+
 # TODO: Walk through folder
 
 # TODO: Find files with specified prefix
