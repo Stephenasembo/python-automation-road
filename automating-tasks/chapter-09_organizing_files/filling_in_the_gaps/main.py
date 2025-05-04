@@ -12,9 +12,10 @@ folder = os.path.join(os.getcwd(), 'sample')
 
 foundFiles = []
 
+prefix = 'spam'
 # Use a regex for finding files
 fileRegex = re.compile(r'''
-  ^(.*?)      # Initial word before number
+  ^spam       # Initial word before number
   (\d)+       # The file number
   (.*)$       # The file extension
   ''', re.VERBOSE)
@@ -30,6 +31,7 @@ for folderName, subFolders, files in os.walk(folder):
     if fileMatch != None:
       foundFiles.append(fileName)
 
+print(foundFiles)
 # TODO: Look for gaps in file naming
 
 # TODO: If gap found rename the file and files after it
