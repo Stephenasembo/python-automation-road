@@ -11,6 +11,9 @@ for i in range(1, len(shapes) + 1):
   print(str(i) + '. ' + shapes[i - 1])
 
 # TODO: Ask user for desired shape
+user_shape = input('Which shape do you want to print?\n')
 
 # TODO: Ask user for shape's size
+user_size = input('Which size do you want your ' + user_shape + ' to be?\n')
+
 # TODO: Print the shape to the console
