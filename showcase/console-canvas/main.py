@@ -23,37 +23,37 @@ while True:
     print('Please input a valid number!\n')
 
 # TODO: Print the shape to the console
-symbol = '#'
+print_symbol = '#'
 
-def print_square():
-  print('Here is your ' + user_shape + ' of size ' + str(user_size) + '.')
-  for i in range(user_size):
-    for j in range(user_size):
+def print_square(size, symbol):
+  print('Here is your square  of size ' + str(size) + '.')
+  for i in range(size):
+    for j in range(size):
       print(symbol, end='')
     print()
 
-def print_triangle():
-  print('Here is your ' + user_shape + ' of size ' + str(user_size) + '.')
-  for i in range(1, user_size + 1):
+def print_triangle(size, symbol):
+  print('Here is your triangle of size ' + str(size) + '.')
+  for i in range(1, size + 1):
     for j in range(i):
       print(symbol, end='')
     print()
 
-def print_pyramid():
-  print('Here is your ' + user_shape + ' of size ' + str(user_size) + '.')
-  padding = user_size - 1
+def print_pyramid(size, symbol):
+  print('Here is your pyramid of size ' + str(size) + '.')
+  padding = size - 1
   space = ' '
   pyramid_symbol = symbol
-  for row in range(user_size):
+  for row in range(size):
     print((space * padding) + pyramid_symbol)
     pyramid_symbol += symbol * 2
     padding -= 1
 
 if user_shape == 'square':
-  print_square()
+  print_square(user_size, print_symbol)
 elif user_shape == 'triangle':
-  print_triangle()
+  print_triangle(user_size, print_symbol)
 elif user_shape == 'pyramid':
-  print_pyramid()
+  print_pyramid(user_size, print_symbol)
 else:
   print('Error: Sorry ' + user_shape + ' can\'t be printed.')
