@@ -40,3 +40,12 @@ def print_pyramid():
     print((space * padding) + pyramid_symbol)
     pyramid_symbol += symbol * 2
     padding -= 1
+
+if user_shape == 'square':
+  print_square()
+elif user_shape == 'triangle':
+  print_triangle()
+elif user_shape == 'pyramid':
+  print_pyramid()
+else:
+  print('Error: Sorry ' + user_shape + ' can\'t be printed.')
