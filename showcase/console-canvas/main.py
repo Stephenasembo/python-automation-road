@@ -11,28 +11,36 @@ for i in range(1, len(shapes) + 1):
   print(str(i) + '. ' + shapes[i - 1])
 
 # TODO: Ask user for desired shape
-user_shape = input('Which shape do you want to print?\n')
+user_shape = (input('Which shape do you want to print?\n')).lower()
 
 # TODO: Ask user for shape's size
-user_size = input('Which size do you want your ' + user_shape + ' to be?\n')
-user_size = int(user_size)
+while True:
+  try:
+    user_size = input('Which size do you want your ' + user_shape + ' to be?\n')
+    user_size = int(user_size)
+    break
+  except:
+    print('Please input a valid number!\n')
 
 # TODO: Print the shape to the console
 symbol = '#'
 
 def print_square():
+  print('Here is your ' + user_shape + ' of size ' + str(user_size) + '.')
   for i in range(user_size):
     for j in range(user_size):
       print(symbol, end='')
     print()
 
 def print_triangle():
+  print('Here is your ' + user_shape + ' of size ' + str(user_size) + '.')
   for i in range(1, user_size + 1):
     for j in range(i):
       print(symbol, end='')
     print()
 
 def print_pyramid():
+  print('Here is your ' + user_shape + ' of size ' + str(user_size) + '.')
   padding = user_size - 1
   space = ' '
   pyramid_symbol = symbol
