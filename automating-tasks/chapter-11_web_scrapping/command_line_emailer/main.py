@@ -19,25 +19,20 @@ else:
 # TODO: Ask for user's account details
 print('\nEnter your account details to log in to you email account.\n')
 
-while True:
-  try:
-    email_account = input('Email address: ')
-    if email_account == '':
-      raise Exception('\nError: Email address can not be empty! Please try again.\n')
-    else:
-      break
-  except Exception as err:
-    print(err)
+def get_account_details(field):
+  while True:
+    try:
+      details = input(f'{field}: ')
+      if details == '':
+        raise Exception(f'\nError: {field} can not be empty! Please try again.\n')
+      else:
+        logging.info(f'Successfully obtained user\'s: {field}')
+        return details
+    except Exception as err:
+      print(err)
 
-while True:
-  try:
-    email_password = input('Password: ')
-    if email_password == '':
-      raise Exception('\nError: Password can not be empty! Please try again.\n')
-    else:
-      break
-  except Exception as err:
-    print(err)
+email_address = get_account_details('Email address')
+email_password = get_account_details('Password')
 
 # TODO: Send email to specified address
 
