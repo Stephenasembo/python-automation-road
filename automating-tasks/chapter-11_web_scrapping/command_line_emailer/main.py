@@ -3,6 +3,8 @@
 # Command line emailer - Sends an email from the command line
 
 import sys, logging
+from selenium import webdriver
+from selenium.webdriver.common.by import By
 
 logging.basicConfig(level=logging.DEBUG, filename='./logs.txt', format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -16,9 +18,20 @@ else:
   recipient = sys.argv[1]
   message = sys.argv[2:]
 
-# TODO: Ask for user's account details
-print('\nEnter your account details to log in to you email account.\n')
+login_status = False
 
+# TODO: Check if user logged in or not
+try:
+  browser = webdriver.Chrome()
+  browser.get('https://gmail.com')
+  try:
+    element = browser.find_element(By.ID, 'headingText')
+  except:
+    login_status = True
+except:
+  print('Error while opening browser.')
+
+# TODO: Ask for user's account details
 def get_account_details(field):
   while True:
     try:
@@ -31,8 +44,13 @@ def get_account_details(field):
     except Exception as err:
       print(err)
 
-email_address = get_account_details('Email address')
-email_password = get_account_details('Password')
+if not login_status:
+  print('\nEnter your account details to log in to you email account.\n')
+  email_address = get_account_details('Email address')
+  email_password = get_account_details('Password')
+  # Login to user account
+else:
+  print('You are already logged in to your account.')
 
 # TODO: Send email to specified address
 
