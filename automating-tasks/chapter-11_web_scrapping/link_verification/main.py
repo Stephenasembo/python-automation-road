@@ -4,7 +4,7 @@
 
 import requests, sys, bs4, pprint, re
 
-# Test website
+# TODO: Make url dynamic retrieved from command line arg, input or from clipboard
 url = 'https://python.org'
 
 # TODO: Open webpage from the provided url
