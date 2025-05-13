@@ -2,7 +2,7 @@
 
 # Link_verification - Flags broken links from a provided url to a webpage
 
-import requests, sys, bs4
+import requests, sys, bs4, pprint, re
 
 # Test website
 url = 'https://python.org'
@@ -32,5 +32,15 @@ for link_element in link_tags:
   links.append(link_element.get('href'))
 
 # TODO: Visit all links from the webpage
+# Sanitize links
+for i in range(len(links)):
+  if links[i].startswith('http'):
+    continue
+  elif links[i].startswith('//'):
+    links[i] = 'https:' + links[i]
+  elif links[i].startswith('#'):
+    links[i] = url + '/' + links[i]
+  else:
+    links[i] = url + links[i]
 
 # TODO: Flag 404 Error pages as broken links
