@@ -55,6 +55,32 @@ def sanitize_links():
   return sanitized
 
 links = sanitize_links()
-sys.exit()
 
 # TODO: Flag 404 Error pages as broken links
+broken_links = []
+other_errors = []
+
+for link_url in links:
+  try:
+    res = requests.get(link_url)
+  except requests.ConnectionError:
+    other_errors.append(f'Connection error occured: Failed to load {link_url}')
+  except requests.HTTPError as err:
+    if err == 404:
+      broken_links.append(link_url)
+    else:
+      other_errors.append(f'HTTP Error: Failed with status code ${err}')
+
+if len(broken_links > 0):
+  print('Broken links found on this webpage:')
+  for broken_link in broken_links:
+    print(broken_link)
+else:
+  print('Hooray! No broken link found on this webpage.')
+
+if len(other_errors) != 0:
+  print('The following links failed to load due to other errors: ')
+  for error in other_errors:
+    print(error)
+
+sys.exit()
