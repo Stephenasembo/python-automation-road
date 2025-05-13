@@ -62,7 +62,7 @@ for link_url in links:
     else:
       other_errors.append(f'HTTP Error: Failed with status code ${err}')
 
-if len(broken_links > 0):
+if len(broken_links) > 0:
   print('Broken links found on this webpage:')
   for broken_link in broken_links:
     print(broken_link)
