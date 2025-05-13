@@ -24,6 +24,12 @@ url = 'https://python.org'
 cached_website_html = open('./test_file.html')
 
 # TODO: Get all link elements from the webpage
+soup = bs4.BeautifulSoup(cached_website_html, features='html.parser')
+link_tags = soup.select('a')
+
+links = []
+for link_element in link_tags:
+  links.append(link_element.get('href'))
 
 # TODO: Visit all links from the webpage
 
