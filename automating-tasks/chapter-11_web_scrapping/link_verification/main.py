@@ -8,24 +8,15 @@ import requests, sys, bs4, pprint, re
 url = 'https://python.org'
 
 # TODO: Open webpage from the provided url
-# try:
-#   initial_page = requests.get(url)
-#   initial_page.raise_for_status()
-# except Exception as err:
-#   print(f'There was a problem loading: {url}')
-#   sys.exit()
-
-# Cache website for testing purposes
-# saved_html = open('./test_file.html', 'wb')
-# for chunk in initial_page.iter_content(100000):
-#   saved_html.write(chunk)
-# saved_html.close()
-
-cached_website_html = open('./test_file.html')
+try:
+  initial_page = requests.get(url)
+  initial_page.raise_for_status()
+except Exception as err:
+  print(f'There was a problem loading: {url}')
+  sys.exit()
 
 # TODO: Get all link elements from the webpage
-soup = bs4.BeautifulSoup(cached_website_html, features='html.parser')
-cached_website_html.close()
+soup = bs4.BeautifulSoup(initial_page.text, features='html.parser')
 link_tags = soup.select('a')
 
 links = []
